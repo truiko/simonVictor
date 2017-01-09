@@ -58,7 +58,7 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 	}
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons();
+		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		moves = new ArrayList<MoveInterfaceVictor>();
@@ -105,7 +105,7 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 		return null;
 	}
 
-	private void addButtons() {
+	private void addButtons(ArrayList<Visible> viewObjects) {
 		int numberOfButtons = 6;
 		Color[] colors = {Color.BLACK,Color.BLUE,Color.RED,Color.YELLOW,Color.GREEN,Color.ORANGE};
 		
@@ -142,7 +142,8 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 					}
 				}
 
-				});	
+				});
+			viewObjects.add(b);
 			
 		}
 	}
