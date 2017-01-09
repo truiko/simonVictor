@@ -28,19 +28,7 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		changeText("");
-//		while(true){
-			nextRound();
-//			synchronized (this) {
-//
-//				try {
-//					wait();
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//
-//			}
-//		}
+		nextRound();
 
 	}
 
