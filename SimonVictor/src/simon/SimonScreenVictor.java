@@ -58,7 +58,7 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 	}
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons(viewObjects);
+		addButtons(viewObjects); // added parameter
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		moves = new ArrayList<MoveInterfaceVictor>();
