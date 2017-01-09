@@ -62,6 +62,7 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 	}
 
 	private void changeText(String string) {
+		// everything disappeared
 		try{
 			label.setText(string);
 			Thread.sleep(1000);
