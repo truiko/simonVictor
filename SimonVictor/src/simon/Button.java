@@ -9,6 +9,8 @@ import guiPractice.components.Component;
 public class Button extends Component implements ButtonInterfaceVictor {
 	
 	private Color color;
+	private Color originColor;
+	private Action action;
 
 	public Button(int x, int y, int w, int h) {
 		super(x, y, w, h);
@@ -17,50 +19,47 @@ public class Button extends Component implements ButtonInterfaceVictor {
 
 	@Override
 	public void act() {
-		// TODO Auto-generated method stub
-
+		action.act();
 	}
 
 	@Override
-	public boolean isHovered(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isHovered(int x, int y) {
+		return x>getX() && x < getX()+getWidth() && y > getY() && y < getY()+getHeight();
 	}
 
 	@Override
 	public void setColor(Color color) {
 		this.color = color;
-
+		this.originColor = color;
 	}
 
 	@Override
 	public ButtonInterfaceVictor getAButton() {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 	@Override
 	public void setAction(Action a) {
-		// TODO Auto-generated method stub
-
+		this.action = a;
+		update();
 	}
 
 	@Override
 	public void highlight() {
-		// TODO Auto-generated method stub
+		this.color = Color.gray;
 
 	}
 
 	@Override
 	public void dim() {
-		// TODO Auto-generated method stub
+		this.color = originColor;
 
 	}
 
 	@Override
 	public void update(Graphics2D g) {
-		if ()
-
+		g.drawOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		g.fillOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	}
 
 }
