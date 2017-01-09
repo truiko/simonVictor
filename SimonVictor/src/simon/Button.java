@@ -11,6 +11,8 @@ public class Button extends Component implements ButtonInterfaceVictor {
 	private Color color;
 	private Color originColor;
 	private Action action;
+	private int xCoord;
+	private int yCoord;
 
 	public Button(int x, int y, int w, int h) {
 		super(x, y, w, h);
@@ -32,6 +34,12 @@ public class Button extends Component implements ButtonInterfaceVictor {
 		this.color = color;
 		this.originColor = color;
 	}
+	
+	public void setX(int i){
+		this.x = i;
+	}
+
+	void setY(int i);
 
 	@Override
 	public ButtonInterfaceVictor getAButton() {
