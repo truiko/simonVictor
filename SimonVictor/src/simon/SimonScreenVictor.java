@@ -2,13 +2,12 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
 
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-import guiPractice.components.ClickableScreen;
+import guiPractice.sampleGames.ClickableScreen;
 
 public class SimonScreenVictor extends ClickableScreen implements Runnable {
 	
@@ -28,55 +27,12 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		 label.setText("");
-		 nextRound();
-	}
-	
-	public void nextRound() {
-		validInput = false;
-		roundNumber ++;
-		progress.setRound(roundNumber);
-		moves.add(randomMove());
-		progress.setSequenceSize(moves.size());
-		changeText("Simon's turn.");
-		label.setText("");
-		playSequence();
-		changeText("Your turn.");
-		label.setText("");
-		validInput = true;
-		movesIndex = 0;
-	}
-	private void playSequence() {
-		ButtonInterfaceVictor b = null;
-		for(MoveInterfaceVictor m: moves){
-			if(b!=null)b.dim();
-			b = m.getButton();
-			b.highlight();
-			try {
-				Thread.sleep((long)(2000*(2.0/(roundNumber+2))));
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		b.dim();
-		
-	}
+		// TODO Auto-generated method stub
 
-	private void changeText(String string) {
-		// everything disappeared
-		try{
-			label.setText(string);
-			Thread.sleep(1000);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
 	}
-	
-	
 
 	@Override
-	public void initAllObjects(List<Visible> viewObjects) {
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		addButtons();
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
@@ -87,6 +43,7 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 		roundNumber = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
+		
 	}
 
 	private MoveInterfaceVictor randomMove() {
@@ -154,7 +111,5 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }
