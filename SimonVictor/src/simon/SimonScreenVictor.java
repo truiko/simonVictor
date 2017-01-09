@@ -27,10 +27,47 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		changeText("");
+//		while(true){
+			nextRound();
+//			synchronized (this) {
+//
+//				try {
+//					wait();
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//
+//			}
+//		}
 
 	}
 
+	private void nextRound() {
+		validInput = false;
+		roundNumber ++;
+		progress.setRound(roundNumber);
+		moves.add(randomMove());
+		progress.setSequenceSize(moves.size());
+		changeText("Simon's turn.");
+		label.setText("");
+		showSequence();
+		changeText("Your turn.");
+		label.setText("");
+		validInput = true;
+		movesIndex = 0;
+		
+	}
+
+	private void changeText(String string) {
+		try{
+			label.setText(string);
+			Thread.sleep(1000);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		addButtons();
@@ -46,6 +83,21 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 		
 	}
 
+	private void showSequence() {
+		ButtonInterfaceVictor b = null;
+		for(MoveInterfaceVictor m: moves){
+			if(b!=null)b.dim();
+			b = m.getButton();
+			b.highlight();
+			try {
+				Thread.sleep((long)(2000*(2.0/(roundNumber+2))));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		b.dim();
+	}
+	
 	private MoveInterfaceVictor randomMove() {
 		Button b = null;
 		b = (Button) buttons[(int) (Math.random()*buttons.length)];
