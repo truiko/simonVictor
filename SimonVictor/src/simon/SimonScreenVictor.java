@@ -2,12 +2,13 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-import guiPractice.sampleGames.ClickableScreen;
+import guiPractice.components.ClickableScreen;
 
 public class SimonScreenVictor extends ClickableScreen implements Runnable {
 	
@@ -71,9 +72,11 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 		}
 		
 	}
+	
+	
 
 	@Override
-	public void initAllObjects(ArrayList<Visible> viewObjects) {
+	public void initAllObjects(List<Visible> viewObjects) {
 		addButtons();
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
@@ -84,7 +87,6 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 		roundNumber = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
-		
 	}
 
 	private MoveInterfaceVictor randomMove() {
@@ -152,5 +154,7 @@ public class SimonScreenVictor extends ClickableScreen implements Runnable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }
