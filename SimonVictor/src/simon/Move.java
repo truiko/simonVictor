@@ -2,14 +2,13 @@ package simon;
 
 public class Move implements MoveInterfaceVictor {
 
-	public Move() {
-		// TODO Auto-generated constructor stub
+	private ButtonInterface b; 
+	
+	public Move(ButtonInterface b) {
+		this.b = b;
 	}
 
-	@Override
-	public ButtonInterfaceVictor getButton() {
-		// TODO Auto-generated method stub
-		return null;
+	public ButtonInterface getButton() {
+		return b;
 	}
-
 }
