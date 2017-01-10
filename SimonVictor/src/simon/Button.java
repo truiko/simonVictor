@@ -13,10 +13,11 @@ public class Button extends Component implements ButtonInterfaceVictor {
 	private Action action;
 	private int xCoord;
 	private int yCoord;
+	private static final int WIDTH = 50;
+	private static final int HEIGHT = 50;
 
 	public Button(int x, int y, int w, int h) {
-		super(x, y, w, h);
-		update();
+		super(x, y, WIDTH, HEIGHT);
 	}
 
 	@Override
@@ -30,16 +31,19 @@ public class Button extends Component implements ButtonInterfaceVictor {
 	}
 
 	@Override
-	public void setColor(Color color) {
-		this.color = color;
-		this.originColor = color;
+	public void setColor(Color colorChoice) {
+		this.color = colorChoice;
+		originColor = color;
+		update();
 	}
 	
 	public void setX(int i){
 		this.x = i;
 	}
 
-	void setY(int i);
+	public void setY(int i){
+		this.y = i;
+	}
 
 	@Override
 	public ButtonInterfaceVictor getAButton() {
@@ -54,14 +58,17 @@ public class Button extends Component implements ButtonInterfaceVictor {
 
 	@Override
 	public void highlight() {
+		if(color != null){
+			originColor = color;
+		}
 		this.color = Color.gray;
-
+		update();
 	}
 
 	@Override
 	public void dim() {
 		this.color = originColor;
-
+		update();
 	}
 
 	@Override
