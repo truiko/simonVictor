@@ -9,45 +9,60 @@ import guiPractice.components.Component;
 
 public class Progress extends Component implements ProgressInterfaceVictor {
 	
-	private String text;
-	private int sequenceSize;
-	private int round;
-	private boolean gameLost;
+	private static final int WIDTH = 100;
+	private static final int HEIGHT = 60;
 
-	public Progress(int x, int y, int w, int h) {
-		super(x, y, w, h);
-		// TODO Auto-generated constructor stub
+	private boolean gameOver;
+	private String round;
+	private String sequence;
+
+	public Progress() {
+		super(60,60,WIDTH,HEIGHT);
 	}
 
-	@Override
+
+
+	public void setRound(int roundNumber) {
+		round = "Round "+roundNumber;
+		update();
+	}
+
+	public void setSequenceLength(int size) {
+		sequence = "Sequence length "+size;
+		update();
+	}
+
 	public void gameOver() {
-		this.gameLost = true;
+		gameOver = true;
 		update();
 	}
 
-	@Override
-	public void setRound(int r) {
-		this.round = r;
-		update();
-	}
 
-	@Override
-	public void setSequenceSize(int s) {
-		this.sequenceSize = s;
-	}
 
 	@Override
 	public void update(Graphics2D g) {
-		g = clear();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.white);
-		g.fillRect(0, 0, image.getWidth(), image.getHeight());
-		g.setColor(Color.black);
-		if(text != null){
-			g.setFont(new Font(font,Font.PLAIN,size));
-			g.drawString(text, 4, getHeight()-5);
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		FontMetrics fm = g.getFontMetrics();
+		if(lost){
+			g.setColor(new Color(255,55,90));
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.setColor(Color.white);
+			String go = "GAME OVER!";
+			g.drawString(go, (WIDTH - fm.stringWidth(go))/2, 20);
+			g.drawString(pattern, (WIDTH - fm.stringWidth(pattern))/2, 40);
+
+		}else{
+			g.setColor(new Color(220,255,230));
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.setColor(Color.black);
+			g.drawRect(0, 0, WIDTH-1, HEIGHT-1);
+			if(round !=null && pattern != null){
+
+				g.drawString(round, (WIDTH - fm.stringWidth(round))/2, 20);
+				g.drawString(pattern, (WIDTH - fm.stringWidth(pattern))/2, 40);
+			}
 		}
+		
 	}
 
 }
