@@ -30,12 +30,6 @@ public class Button extends Component implements ButtonInterfaceVictor {
 		
 	}
 
-	@Override
-	public boolean isHovered(int x, int y) {
-		double distance = Math.sqrt(Math.pow(x-(getX()+WIDTH/2), 2)+Math.pow(y-(getY()+HEIGHT/2), 2));
-		System.out.println(distance + " px away from "+name);
-		return distance < WIDTH/2;
-	}
 
 	@Override
 	public void setColor(Color color) {
@@ -67,11 +61,11 @@ public class Button extends Component implements ButtonInterfaceVictor {
 		
 	}
 
-
 	@Override
-	public ButtonInterfaceVictor getAButton() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean isHovered(int x, int y) {
+		double distance = Math.sqrt(Math.pow(x-(getX()+WIDTH/2), 2)+Math.pow(y-(getY()+HEIGHT/2), 2));
+		System.out.println(distance + " px away from "+name);
+		return distance < WIDTH/2;
 	}
 
 	@Override

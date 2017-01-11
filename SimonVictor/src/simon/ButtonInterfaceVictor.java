@@ -9,8 +9,6 @@ public interface ButtonInterfaceVictor extends Clickable {
 
 	void setColor(Color color);
 
-	ButtonInterfaceVictor getAButton();
-
 	void setX(int i);
 
 	void setY(int i);
