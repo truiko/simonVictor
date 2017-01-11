@@ -11,16 +11,15 @@ import guiPractice.components.Component;
 
 public class Button extends Component implements ButtonInterfaceVictor {
 	
-	private static final int WIDTH = 80;
-	private static final int HEIGHT = 80;
+	private static final int RADIUS = 80;
+	private Color color;
+	private Color originColor;
 	private Action action;
-	private Color c;
-	private Color displayColor;
 	private boolean highlight;
 	private String name;
 
 	public Button() {
-		super(0, 0, WIDTH, HEIGHT);
+		super(0, 0, RADIUS, RADIUS);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -33,8 +32,8 @@ public class Button extends Component implements ButtonInterfaceVictor {
 
 	@Override
 	public void setColor(Color color) {
-		this.c = color;
-		displayColor = color;
+		this.color = color;
+		originColor = color;
 		update();
 		
 	}
@@ -50,40 +49,42 @@ public class Button extends Component implements ButtonInterfaceVictor {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		if(displayColor != null){
-			g.setColor(displayColor);
+			g.setColor(originColor);
 		}else{
-			g.setColor(Color.gray);
+			g.setColor(Color.white);
 		}
 		
-		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, RADIUS, RADIUS);
 		g.setColor(Color.black);
-		g.drawRect(0, 0, WIDTH-1, HEIGHT-1);
+		g.drawRect(0, 0, RADIUS-1, RADIUS-1);
 		
 	}
 
 	@Override
 	public boolean isHovered(int x, int y) {
-		double distance = Math.sqrt(Math.pow(x-(getX()+WIDTH/2), 2)+Math.pow(y-(getY()+HEIGHT/2), 2));
+		double distance = Math.sqrt(Math.pow(x-(getX()+RADIUS/2), 2)+Math.pow(y-(getY()+RADIUS/2), 2));
 		System.out.println(distance + " px away from "+name);
-		return distance < WIDTH/2;
+		return distance < RADIUS/2;
 	}
-
+	
+	@Override
+	public void dim() {
+		originyColor = Color.gray;
+		highlight = false;
+		update();
+		
+	
+	}
 	@Override
 	public void highlight() {
-		if(c != null){
-			displayColor = c;
+		if(color != null){
+			originColor = color;
 		}
 		highlight = true;
 		update();
 		
 	}
 
-	@Override
-	public void dim() {
-		displayColor = Color.gray;
-		highlight = false;
-		update();
-		
-	}
+	
 
 }
