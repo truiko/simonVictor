@@ -10,10 +10,10 @@ import guiPractice.components.Component;
 
 public class Progress extends Component implements ProgressInterfaceVictor {
 	
-	private static final int WIDTH = 120;
-	private static final int HEIGHT = 50;
+	private static final int WIDTH = 100;
+	private static final int HEIGHT = 60;
 
-	private boolean lost;
+	private boolean gameLost;
 	private String round;
 	private String pattern;
 	
@@ -47,7 +47,7 @@ public class Progress extends Component implements ProgressInterfaceVictor {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		FontMetrics fm = g.getFontMetrics();
 		if(lost){
-			g.setColor(new Color(255,55,90));
+			g.setColor(Color.red);
 			g.fillRect(0, 0, WIDTH, HEIGHT);
 			g.setColor(Color.white);
 			String go = "GAME OVER!";
