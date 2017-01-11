@@ -2,13 +2,13 @@ package simon;
 
 public class Move implements MoveInterfaceVictor {
 
-	private ButtonInterface b; 
+	private ButtonInterfaceVictor b; 
 	
-	public Move(ButtonInterface b) {
+	public Move(ButtonInterfaceVictor b) {
 		this.b = b;
 	}
 
-	public ButtonInterface getButton() {
+	public ButtonInterfaceVictor getButton() {
 		return b;
 	}
 }

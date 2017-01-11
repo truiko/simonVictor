@@ -1,43 +1,46 @@
 package simon;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 import guiPractice.components.Component;
 
 public class Progress extends Component implements ProgressInterfaceVictor {
 	
-	private static final int WIDTH = 100;
-	private static final int HEIGHT = 60;
+	private static final int WIDTH = 120;
+	private static final int HEIGHT = 50;
 
-	private boolean gameOver;
+	private boolean lost;
 	private String round;
-	private String sequence;
-
+	private String pattern;
+	
 	public Progress() {
 		super(60,60,WIDTH,HEIGHT);
 	}
 
-
-
-	public void setRound(int roundNumber) {
-		round = "Round "+roundNumber;
-		update();
-	}
-
-	public void setSequenceLength(int size) {
-		sequence = "Sequence length "+size;
-		update();
-	}
-
+	@Override
 	public void gameOver() {
-		gameOver = true;
+		lost = true;
 		update();
+		
 	}
 
+	@Override
+	public void setRound(int roundNum) {
+		round = "Round "+ roundNum;
+		update();
+		
+	}
 
+	@Override
+	public void setSequenceSize(int size) {
+		pattern = "Pattern length "+size;
+		update();
+		
+	}
 
 	@Override
 	public void update(Graphics2D g) {
@@ -52,12 +55,11 @@ public class Progress extends Component implements ProgressInterfaceVictor {
 			g.drawString(pattern, (WIDTH - fm.stringWidth(pattern))/2, 40);
 
 		}else{
-			g.setColor(new Color(220,255,230));
+			g.setColor(Color.darkGray);
 			g.fillRect(0, 0, WIDTH, HEIGHT);
-			g.setColor(Color.black);
+			g.setColor(Color.white);
 			g.drawRect(0, 0, WIDTH-1, HEIGHT-1);
 			if(round !=null && pattern != null){
-
 				g.drawString(round, (WIDTH - fm.stringWidth(round))/2, 20);
 				g.drawString(pattern, (WIDTH - fm.stringWidth(pattern))/2, 40);
 			}

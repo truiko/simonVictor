@@ -2,70 +2,94 @@ package simon;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 import guiPractice.components.Action;
 import guiPractice.components.Component;
 
 public class Button extends Component implements ButtonInterfaceVictor {
 	
-	private Color color;
-	private Color originColor;
+	private static final int WIDTH = 80;
+	private static final int HEIGHT = 80;
 	private Action action;
-	private int xCoord;
-	private int yCoord;
+	private Color c;
+	private Color displayColor;
+	private boolean highlight;
+	private String name;
 
-	public Button(int x, int y, int w, int h) {
-		super(x, y, w, h);
-		update();
+	public Button() {
+		super(0, 0, WIDTH, HEIGHT);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void act() {
 		action.act();
+		
 	}
 
 	@Override
 	public boolean isHovered(int x, int y) {
-		return x>getX() && x < getX()+getWidth() && y > getY() && y < getY()+getHeight();
+		double distance = Math.sqrt(Math.pow(x-(getX()+WIDTH/2), 2)+Math.pow(y-(getY()+HEIGHT/2), 2));
+		System.out.println(distance + " px away from "+name);
+		return distance < WIDTH/2;
 	}
 
 	@Override
 	public void setColor(Color color) {
-		this.color = color;
-		this.originColor = color;
-	}
-	
-
-
-
-
-	@Override
-	public ButtonInterfaceVictor getAButton() {
-		return this;
-	}
-
-	@Override
-	public void setAction(Action a) {
-		this.action = a;
+		this.c = color;
+		displayColor = color;
 		update();
+		
 	}
 
 	@Override
-	public void highlight() {
-		this.color = Color.gray;
-
-	}
-
-	@Override
-	public void dim() {
-		this.color = originColor;
-
+	public void setAction(Action action) {
+		this.action = action;
+		
 	}
 
 	@Override
 	public void update(Graphics2D g) {
-		g.drawOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		g.fillOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		
+		if(displayColor != null){
+			g.setColor(displayColor);
+		}else{
+			g.setColor(Color.gray);
+		}
+		
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.setColor(Color.black);
+		g.drawRect(0, 0, WIDTH-1, HEIGHT-1);
+		
+	}
+
+
+	@Override
+	public ButtonInterfaceVictor getAButton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void highlight() {
+		if(c != null){
+			displayColor = c;
+		}
+		highlight = true;
+		update();
+		
+	}
+
+	@Override
+	public void dim() {
+		displayColor = Color.gray;
+		highlight = false;
+		update();
+		
 	}
 
 }
