@@ -23,7 +23,7 @@ public class Progress extends Component implements ProgressInterfaceVictor {
 
 	@Override
 	public void gameOver() {
-		lost = true;
+		gameLost = true;
 		update();
 		
 	}
@@ -46,7 +46,7 @@ public class Progress extends Component implements ProgressInterfaceVictor {
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		FontMetrics fm = g.getFontMetrics();
-		if(lost){
+		if(gameLost){
 			g.setColor(Color.red);
 			g.fillRect(0, 0, WIDTH, HEIGHT);
 			g.setColor(Color.white);

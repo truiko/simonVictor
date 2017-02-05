@@ -48,7 +48,7 @@ public class Button extends Component implements ButtonInterfaceVictor {
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		if(displayColor != null){
+		if(originColor != null){
 			g.setColor(originColor);
 		}else{
 			g.setColor(Color.white);
@@ -69,7 +69,7 @@ public class Button extends Component implements ButtonInterfaceVictor {
 	
 	@Override
 	public void dim() {
-		originyColor = Color.gray;
+		originColor = Color.gray;
 		highlight = false;
 		update();
 		
